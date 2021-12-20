@@ -4,3 +4,15 @@
 #
 #    "make update-requirements"
 #
+bugyi.lib==0.11.0
+    # via -r requirements.in
+colorama==0.4.4
+    # via -r requirements.in
+python-dateutil==2.8.2
+    # via bugyi.lib
+python-result==0.2.1
+    # via bugyi.lib
+six==1.16.0
+    # via python-dateutil
+structlog==21.5.0
+    # via -r requirements.in
