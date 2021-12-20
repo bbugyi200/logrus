@@ -3,10 +3,17 @@
 https://docs.pytest.org/en/6.2.x/fixture.html#conftest-py-sharing-fixtures-across-multiple-files
 """
 
+from typing import Iterator
+
 from _pytest.config import Config
 from _pytest.nodes import Item
+from freezegun import freeze_time
+from pytest import fixture
 from typeguard import typechecked
 from typeguard.importhook import install_import_hook
+
+
+pytest_plugins = ["logrus.pytest_plugin"]
 
 
 def pytest_configure(config: Config) -> None:
@@ -43,3 +50,10 @@ def pytest_runtest_call(item: Item) -> None:
     test_func = getattr(item, "obj", None)
     if test_func is not None:
         setattr(item, "obj", typechecked(test_func))
+
+
+@fixture(autouse=True, scope="session")
+def frozen_time() -> Iterator[None]:
+    """Freeze time until our tests are done running."""
+    with freeze_time("2021-09-06T15:45:03.585481Z"):
+        yield
