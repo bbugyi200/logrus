@@ -18,6 +18,9 @@ mypy != 0.920  # workaround for https://github.com/samuelcolvin/pydantic/pull/31
 pydocstyle[toml]
 pylint
 
+### Types
+types-freezegun
+
 ### Docs
 m2r2
 sphinx
